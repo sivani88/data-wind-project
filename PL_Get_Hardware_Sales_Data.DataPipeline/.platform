@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "PL_Get_Hardware_Sales_Data"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a4be703a-6350-a5c5-4024-26148f12b5c1"
+  }
+}
