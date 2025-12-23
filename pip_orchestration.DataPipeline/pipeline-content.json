@@ -1,0 +1,182 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "aaddc163-685d-a222-411c-c6556e7185fe",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "notbook_daily_turbine_data",
+        "state": "Active",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "0f9398e1-d943-9285-4b2e-1ca825cc6674",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Bronze_to_silver_transformation",
+        "state": "Active",
+        "dependsOn": [
+          {
+            "activity": "notbook_daily_turbine_data",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "1e3bb45a-0551-af94-4b2d-4c01a1e38857",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Silver_to_gold_transfo",
+        "state": "Active",
+        "dependsOn": [
+          {
+            "activity": "Bronze_to_silver_transformation",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "PBISemanticModelRefresh",
+        "typeProperties": {
+          "method": "post",
+          "groupId": "00e69122-80e7-4974-8e82-5e52582fc33c",
+          "datasetId": "d021a075-e80f-4759-860f-48be6abae53c",
+          "commitMode": "Transactional",
+          "objects": [],
+          "waitOnCompletion": true,
+          "operationType": "SemanticModelRefresh"
+        },
+        "externalReferences": {
+          "connection": "909d38e4-786b-4995-b486-0051eed1575b"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Semantic model refresh",
+        "state": "Active",
+        "dependsOn": [
+          {
+            "activity": "Silver_to_gold_transfo",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SetVariable",
+        "typeProperties": {
+          "variableName": "erreur",
+          "value": "0"
+        },
+        "policy": {
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Set erreur",
+        "description": "if erreur send email",
+        "dependsOn": [
+          {
+            "activity": "notbook_daily_turbine_data",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Bronze_to_silver_transformation",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Silver_to_gold_transfo",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "Semantic model refresh",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Office365Email",
+        "typeProperties": {
+          "body": "<p>lallala</p>",
+          "to": "sivani.avella@comsoft.fr",
+          "subject": "pb pip"
+        },
+        "externalReferences": {
+          "connection": "2090201b-79bb-43d1-a0f5-6dc13b734b0c"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Office365Email1",
+        "dependsOn": [
+          {
+            "activity": "Set erreur",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ],
+    "variables": {
+      "hasError": {
+        "type": "Boolean",
+        "defaultValue": false
+      },
+      "seterreur": {
+        "type": "Boolean",
+        "defaultValue": false
+      },
+      "erreur": {
+        "type": "String"
+      }
+    }
+  }
+}

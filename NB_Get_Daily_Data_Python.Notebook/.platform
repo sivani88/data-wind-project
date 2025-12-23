@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "SemanticModel",
-    "displayName": "semantic_wind_turbin_power"
+    "type": "Notebook",
+    "displayName": "NB_Get_Daily_Data_Python"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "6abae53c-48be-860f-4759-e80fd021a075"
+    "logicalId": "aaddc163-685d-a222-411c-c6556e7185fe"
   }
 }
