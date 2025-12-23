@@ -1,0 +1,91 @@
+table fact_wind_power
+	lineageTag: 5719976b-960b-4c25-b227-bd1a4169c281
+	sourceLineageTag: [dbo].[fact_wind_power]
+
+	column production_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b7562114-6961-4262-9dc0-8647120694ea
+		sourceLineageTag: production_id
+		summarizeBy: sum
+		sourceColumn: production_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_id
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 40fc9034-981f-4dc3-ba44-da6911e492d0
+		sourceLineageTag: date_id
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_id
+		dataType: string
+		lineageTag: 08d61723-45b7-45d8-abe2-42d7b82e32d6
+		sourceLineageTag: time_id
+		summarizeBy: none
+		sourceColumn: time_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column turbine_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5815621d-1024-47c0-a38b-e50659afce6e
+		sourceLineageTag: turbine_id
+		summarizeBy: none
+		sourceColumn: turbine_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e4baeccd-8f9f-472a-abb4-8cf5d23e3b6d
+		sourceLineageTag: status_id
+		summarizeBy: none
+		sourceColumn: status_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column wind_speed
+		dataType: double
+		lineageTag: f22717b4-b15a-42d6-89c9-367bf105a6e7
+		sourceLineageTag: wind_speed
+		summarizeBy: sum
+		sourceColumn: wind_speed
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column wind_direction
+		dataType: string
+		lineageTag: 70a3ff96-ed80-40fe-8ec7-93686fa4f94b
+		sourceLineageTag: wind_direction
+		summarizeBy: none
+		sourceColumn: wind_direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column energy_produced
+		dataType: double
+		lineageTag: ead4e1e5-d790-496d-9901-7dabd775c942
+		sourceLineageTag: energy_produced
+		summarizeBy: sum
+		sourceColumn: energy_produced
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_wind_power = entity
+		mode: directLake
+		source
+			entityName: fact_wind_power
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_Wind_Gold'
+
