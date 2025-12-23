@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "SemanticModel",
-    "displayName": "semantic_wind_turbin_power"
+    "type": "Report",
+    "displayName": "RPT_Wind_Turbine_Power_Analysis_sanscopilot"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "6abae53c-48be-860f-4759-e80fd021a075"
+    "logicalId": "f5ba7e4d-82ef-934c-42fa-835cfcef7e61"
   }
 }

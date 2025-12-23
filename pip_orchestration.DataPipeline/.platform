@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "SemanticModel",
-    "displayName": "semantic_wind_turbin_power"
+    "type": "DataPipeline",
+    "displayName": "pip_orchestration"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "6abae53c-48be-860f-4759-e80fd021a075"
+    "logicalId": "911f1bb2-a1dc-89b8-4128-a6ff5e3920f3"
   }
 }
