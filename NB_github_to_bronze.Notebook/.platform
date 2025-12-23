@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "DataPipeline",
-    "displayName": "PL_Get_Hardware_Sales_Data"
+    "type": "Notebook",
+    "displayName": "NB_github_to_bronze"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "a4be703a-6350-a5c5-4024-26148f12b5c1"
+    "logicalId": "ce8aedeb-b015-b2f4-4508-aaae2aee4ad1"
   }
 }

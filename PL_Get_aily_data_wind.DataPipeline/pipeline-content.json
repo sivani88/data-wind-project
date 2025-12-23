@@ -26,7 +26,7 @@
               },
               "schema": [],
               "externalReferences": {
-                "connection": "a8a1df37-1412-4bee-9c90-817aac0a74a0"
+                "connection": "cbdb5af8-1e68-4394-a71b-5335af8965e7"
               },
               "annotations": []
             }
@@ -45,7 +45,7 @@
               "typeProperties": {
                 "location": {
                   "type": "LakehouseLocation",
-                  "fileName": "dev_hardware_sales_data.csv"
+                  "fileName": "wind-power-dataset.csv"
                 },
                 "columnDelimiter": ",",
                 "quoteChar": "\"",
@@ -54,11 +54,11 @@
               },
               "schema": [],
               "connectionSettings": {
-                "name": "LH_Bronze",
+                "name": "wind_bronze",
                 "properties": {
                   "type": "Lakehouse",
                   "typeProperties": {
-                    "artifactId": "b2cd5be2-084c-96e9-421b-f2083cd20122",
+                    "artifactId": "faee2b34-7288-90c0-4ba4-fdb36267907f",
                     "workspaceId": "00000000-0000-0000-0000-000000000000",
                     "rootFolder": "Files"
                   },
@@ -88,7 +88,7 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Get Hardware Sales Data",
+        "name": "Get_wind_data",
         "dependsOn": []
       }
     ]
